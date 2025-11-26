@@ -79,9 +79,11 @@ float GetDist(vec3 p) {
     //zero_pos.x += .5 * sin(0.5*time);
     //zero_pos.y -= .6 * sin(0.4*time);
     float sphere = DESphere(p, zero_pos , .30);
-    //float penrose = DEInefficentMergerSponge(p);
-    //return penrose;
     return sphere;
+    //float sponge = DEInefficentMergerSponge(p);
+    //return sponge;
+    //float penrose = DEInefficentPenroseTetrahedron(p);
+    //return penrose;
 }
 
 // Main RayMarch loop
