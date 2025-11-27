@@ -1,4 +1,4 @@
--- run on boot of the program, where all the setup happes
+-- run on boot of the program, where all the setup happens
 function lovr.load()
   lovr.graphics.setTimingEnabled(true)
   march_shader = lovr.graphics.newShader(lovr.filesystem.read("shader.vert"),lovr.filesystem.read("shader.frag"))
@@ -31,7 +31,7 @@ function lovr.draw(pass)
   --pass:sphere()
   --  pass:reset()
   --lovr.graphics.setShader()
-  
+
   pass:cube()
   pass:setShader(march_shader)
   pass:send('viewOffset', { flight.viewOffset:unpack() })
