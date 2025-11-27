@@ -39,6 +39,7 @@ function lovr.draw(pass)
   pass:send("time", lovr.timer.getTime())
   pass:setColor(1, 1, 1, 0)
   pass:plane()
+  pass:sphere(0, 1.7, -2)
 
   stats = pass:getStats()
   print('GPU Stats:')

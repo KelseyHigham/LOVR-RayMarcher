@@ -1,8 +1,7 @@
 
 // Pass position fo the pixel
 in vec3 pos;
-// Pass direction of the pixel
-in vec3 dir;
+in vec3 worldPos;
 
 Constants {
     float time; // real time 
@@ -150,7 +149,8 @@ vec3 palette( in float t)
 // Main function 
 vec4 lovrmain() {
     vec3 position = pos + viewOffset; // add flight controls
-    vec3 direction = normalize(dir);
+    vec3 direction = normalize(worldPos - position);
+
 
     vec2 raymarch_result = RayMarch(position, direction);
     float steps = raymarch_result.x;
