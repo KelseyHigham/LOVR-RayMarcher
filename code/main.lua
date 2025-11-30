@@ -1,4 +1,10 @@
 TAU = math.pi * 2
+
+-- 100 for mobile
+-- 250 for desktop
+-- 254 maximum
+resolution = 100
+
 -- run on boot of the program, where all the setup happens
 function lovr.load()
   lovr.graphics.setTimingEnabled(true)
@@ -61,13 +67,13 @@ function lovr.draw(pass)
   pass:plane(
     mat4(lovr.headset.getPose('head')):translate(0, 0, -1),
     'fill',
-    100
+    resolution
   )
   -- Sparse plane filling the FOV
   pass:plane(
     mat4(lovr.headset.getPose('head')):translate(0, 0, -1.1):scale(3),
     'fill',
-    100
+    resolution
   )
 
   stats = pass:getStats()
