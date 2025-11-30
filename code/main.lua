@@ -1,3 +1,4 @@
+TAU = math.pi * 2
 -- run on boot of the program, where all the setup happens
 function lovr.load()
   lovr.graphics.setTimingEnabled(true)
@@ -38,8 +39,36 @@ function lovr.draw(pass)
   pass:send("scale", scale)
   pass:send("time", lovr.timer.getTime())
   pass:setColor(1, 1, 1, 0)
-  pass:plane()
-  pass:sphere(0, 1.7, -2)
+
+  -- -- Static sphere for testing.
+  -- pass:sphere(
+  --   0, 1.7, 0, 1,
+  --   TAU/4, 1, 0, 0,
+  --   250
+  -- )
+
+  -- -- Using a UV sphere to concentrate more points at the center of the view.
+  -- pass:sphere(
+  --   vec3(lovr.headset.getPosition('head')),
+  --   1,
+  --   quat(lovr.headset.getOrientation('head')):mul(quat(TAU/4, 1, 0, 0)),
+  --   250,
+  --   125 -- Only about 25 of these are visible! Custom geometry would be much more efficient.
+  -- )
+
+  -- Basic fixed foveated rendering
+  -- Dense plane at the center of vision
+  pass:plane(
+    mat4(lovr.headset.getPose('head')):translate(0, 0, -1),
+    'fill',
+    100
+  )
+  -- Sparse plane filling the FOV
+  pass:plane(
+    mat4(lovr.headset.getPose('head')):translate(0, 0, -1.1):scale(3),
+    'fill',
+    100
+  )
 
   stats = pass:getStats()
   print('GPU Stats:')

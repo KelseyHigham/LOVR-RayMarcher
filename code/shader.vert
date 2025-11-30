@@ -161,5 +161,9 @@ vec4 lovrmain() {
     vec3 col = dif * direct_light_color + ambient_light;
     col -= 0.85 * float(dist) / float(MAX_DIST) + 0.06 * (float(steps) / float(MAX_STEPS));
     dynamicVertexColor = col;
+
+    // // Visualize vertices, for configuring geometry resolution
+    // dynamicVertexColor = vec3(VertexIndex & 1, VertexIndex & 2, VertexIndex & 3);
+
     return DefaultPosition;
 }
